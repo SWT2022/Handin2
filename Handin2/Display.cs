@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Handin2
 {
-    internal class Display
+    internal class Display : IDisplay
     {
+
     }
 }
