@@ -4,8 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Ladeskab;
-using Handin2.Interfaces;
+
 
 namespace Handin2
 {

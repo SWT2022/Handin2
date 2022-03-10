@@ -12,10 +12,7 @@ namespace Handin2
 
         void LockDoor();
 
-        void UnlockDoor();
-
-        bool DoorState { get; set; }
-
+        void UnlockDoor(); 
 
     }
 }
