@@ -8,5 +8,14 @@ namespace Handin2
 {
     internal interface IDoor
     {
+        event EventHandler<DoorStateEventArgs> DoorStateEvent;
+
+        void LockDoor();
+
+        void UnlockDoor();
+
+        bool DoorState { get; set; }
+
+
     }
 }
