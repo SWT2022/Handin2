@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Handin2
 {
-    internal class Door : IDoor
+    public class Door : IDoor
     {
         private bool _DoorState { get; set; }  
 
@@ -20,7 +20,7 @@ namespace Handin2
 
         public void UnlockDoor()
         {
-            _DoorState = true;
+            _DoorState = false;
             OnDoorStateChanged(new DoorStateEventArgs { DoorState = _DoorState });
         }
 
