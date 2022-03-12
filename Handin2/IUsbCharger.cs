@@ -7,6 +7,7 @@ namespace UsbSimulator
         // Value in mA (milliAmpere)
         public double Current { set; get; }
     }
+    //
 
     public interface IUsbCharger
     {
