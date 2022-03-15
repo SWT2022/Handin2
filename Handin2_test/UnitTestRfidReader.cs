@@ -22,6 +22,12 @@ namespace Handin2_test
         }
 
         [Test]
+        public void SetID_NO_EventFired()
+        {
+            Assert.That(_RfidReaderEventArgs, Is.Null);
+        }
+
+        [Test]
         public void SetID_EventFired()
         {
             //Act
@@ -48,6 +54,28 @@ namespace Handin2_test
             _uut.setId(6);
 
             Assert.That(_RfidReaderEventArgs.Id, Is.EqualTo(6));
+        }
+
+        [Test]
+        public void NewId_SameAs_OldId_CorrectValue()
+        {
+           
+            //Act
+            _uut.setId(5);
+            _uut.setId(5);
+
+            Assert.That(_RfidReaderEventArgs.Id, Is.EqualTo(5));
+        }
+
+        [Test]
+        public void NewId_SameAs_OldId_EventFired()
+        {
+
+            //Act
+            _uut.setId(5);
+            _uut.setId(5);
+
+            Assert.That(_RfidReaderEventArgs, Is.Not.Null);
         }
 
     }
