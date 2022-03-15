@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Handin2
 {
-    internal class RfidReader : IRfidReader
+    public class RfidReader : IRfidReader
     {
         
         public event EventHandler<RfidReaderEventArgs> RfidReaderEvent;
