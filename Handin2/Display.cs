@@ -11,32 +11,32 @@ namespace Handin2
 
         public void DisplayConnectPhone()
         {
-
+            Console.WriteLine("Connect Phone");
         }
 
         public void DisplayReadRfid()
         {
-
+            Console.WriteLine("Read Rfid");
         }
 
         public void DisplayConnectError()
         {
-
+            Console.WriteLine("Connection Error");
         }
 
         public void DisplayOccupied()
         {
-
+            Console.WriteLine("Occupied");
         }
 
         public void DisplayReadError()
         {
-
+            Console.WriteLine("Read Error");
         }
 
         public void DisplayRemovePhone()
         {
-
+            Console.WriteLine("Remove Phone");
         }
 
     }
