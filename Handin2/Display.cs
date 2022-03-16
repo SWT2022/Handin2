@@ -6,10 +6,38 @@ using System.Threading.Tasks;
 
 namespace Handin2
 {
-    internal class Display : IDisplay
+    public class Display : IDisplay
     {
 
+        public void DisplayConnectPhone()
+        {
 
+        }
+
+        public void DisplayReadRfid()
+        {
+
+        }
+
+        public void DisplayConnectError()
+        {
+
+        }
+
+        public void DisplayOccupied()
+        {
+
+        }
+
+        public void DisplayReadError()
+        {
+
+        }
+
+        public void DisplayRemovePhone()
+        {
+
+        }
 
     }
 }
