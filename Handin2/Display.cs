@@ -9,5 +9,7 @@ namespace Handin2
     internal class Display : IDisplay
     {
 
+
+
     }
 }
