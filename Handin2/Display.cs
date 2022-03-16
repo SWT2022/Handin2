@@ -11,33 +11,47 @@ namespace Handin2
 
         public void DisplayConnectPhone()
         {
-            Console.WriteLine("Connect Phone");
+            Console.WriteLine("Tilslut telefon");
         }
 
         public void DisplayReadRfid()
         {
-            Console.WriteLine("Read Rfid");
+            Console.WriteLine("Indlæs Rfid");
         }
 
         public void DisplayConnectError()
         {
-            Console.WriteLine("Connection Error");
+            Console.WriteLine("Tilslutningsfejl");
         }
 
         public void DisplayOccupied()
         {
-            Console.WriteLine("Occupied");
+            Console.WriteLine("Ladeskab Optaget");
         }
 
         public void DisplayReadError()
         {
-            Console.WriteLine("Read Error");
+            Console.WriteLine("Rfid fejl");
         }
 
         public void DisplayRemovePhone()
         {
-            Console.WriteLine("Remove Phone");
+            Console.WriteLine("Fjern telefon");
         }
 
+        public void DisplayCharging() //Tilføj til klassediagram?
+        {
+            Console.WriteLine("Ladning foregår");
+        }
+
+        public void DisplayFullyCharged() //Tilføj til klassediagram?
+        {
+            Console.WriteLine("Telefon er fuldt opladet");
+        }
+
+        public void DisplayChargingError() //Tilføj til klassediagram?
+        {
+            Console.WriteLine("FEJL");
+        }
     }
 }

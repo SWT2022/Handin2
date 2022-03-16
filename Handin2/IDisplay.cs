@@ -20,5 +20,12 @@ namespace Handin2
 
         void DisplayRemovePhone();
 
+        void DisplayCharging();
+
+        void DisplayFullyCharged();
+
+        void DisplayChargingError();
+        
+
     }
 }
