@@ -20,15 +20,14 @@ namespace Handin2_test
         [Test]
         public void DisplayConnectPhone_CorrectId()
         {
-            int Id = 0;
+            int DisplayId = 0;
             _uut.DisplayConnectPhone();
 
-            Assert.That(Id, Is.EqualTo(1));
+            Assert.That(DisplayId, Is.EqualTo(1));
 
         }
 
-
-
+        [Test]
         public void DisplayReadRfid_CorrectId()
         {
             int Id = 0;
@@ -38,6 +37,7 @@ namespace Handin2_test
 
         }
 
+        [Test]
         public void DisplayConnectError_CorrectId()
         {
             int Id = 0;
@@ -46,6 +46,7 @@ namespace Handin2_test
             Assert.That(Id, Is.EqualTo(3));
         }
 
+        [Test]
         public void DisplayOccupied_CorrectId()
         {
             int Id = 0;
@@ -54,6 +55,7 @@ namespace Handin2_test
             Assert.That(Id, Is.EqualTo(4));
         }
 
+        [Test]
         public void DisplayReadError_CorrectId()
         {
             int Id = 0;
@@ -62,6 +64,7 @@ namespace Handin2_test
             Assert.That(Id, Is.EqualTo(5));
         }
 
+        [Test]
         public void DisplayRemovePhone_CorrectId()
         {
             int Id = 0;
@@ -70,6 +73,7 @@ namespace Handin2_test
             Assert.That(Id, Is.EqualTo(6));
         }
 
+        [Test]
         public void DisplayCharging_CorrectId()
         {
             int Id = 0;
@@ -78,14 +82,16 @@ namespace Handin2_test
             Assert.That(Id, Is.EqualTo(7));
         }
 
+        [Test]
         public void DisplayFullyCharged_CorrectId()
         {
-            int Id = 0;
+            int DisplayId = 0;
             _uut.DisplayFullyCharged();
 
-            Assert.That(Id, Is.EqualTo(8));
+            Assert.That(DisplayId, Is.EqualTo(8));
         }
 
+        [Test]
         public void DisplayChargingError_CorrectId()
         {
             int Id = 0;

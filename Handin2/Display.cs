@@ -11,7 +11,7 @@ namespace Handin2
 
         public void DisplayConnectPhone()
         {
-            DisplayId = 1;
+            int DisplayId = 1;
             Console.WriteLine("Tilslut telefon");
         }
 
