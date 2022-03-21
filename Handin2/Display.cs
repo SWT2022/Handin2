@@ -11,7 +11,7 @@ namespace Handin2
 
         public void DisplayConnectPhone()
         {
-            int DisplayId = 1;
+            DisplayId = 1;
             Console.WriteLine("Tilslut telefon");
         }
 
@@ -63,6 +63,6 @@ namespace Handin2
             Console.WriteLine("FEJL");
         }
 
-        private int DisplayId;
+        public int DisplayId;
     }
 }
