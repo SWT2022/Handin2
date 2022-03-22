@@ -47,10 +47,7 @@ namespace Handin2
 
         public bool isConnected()
         {
-            
-            
             return _usbCharger.Connected;
-
         }
 
         public void StartCharge()
