@@ -8,7 +8,7 @@ namespace Handin2
 {
     public class Door : IDoor
     {
-        private bool _DoorState { get; set; }  
+        private bool _DoorState { get; set; } = false;  
 
         public event EventHandler<DoorStateEventArgs> DoorStateEvent;
 

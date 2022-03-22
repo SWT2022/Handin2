@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Handin2
 {
-    public class DoorStateEventArgs
+    public class DoorStateEventArgs : EventArgs
     {
         public bool DoorState { get; set; }
     }
