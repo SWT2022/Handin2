@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace Handin2_test
     public class UnitTestDisplay
     {
         public Display _uut;
+
         [SetUp]
         public void Setup()
         {
@@ -18,79 +20,140 @@ namespace Handin2_test
         }
 
         [Test]
-        public void DisplayConnectPhone_CorrectId()
+        public void DisplayConnectPhone_CorrectText()
         {
-            
-            _uut.DisplayConnectPhone();
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
 
-            Assert.That(_uut.DisplayId, Is.EqualTo(1));
+                _uut.DisplayConnectPhone();
 
+                string expected = string.Format("Tilslut telefon{0}", Environment.NewLine);
+                Assert.AreEqual(expected, sw.ToString());
+            }
+        }
+
+
+        [Test]
+        public void DisplayReadRfid_CorrectText()
+        {
+
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+
+                _uut.DisplayReadRfid();
+
+                string expected = string.Format("Indlæs Rfid{0}", Environment.NewLine);
+                Assert.AreEqual(expected, sw.ToString());
+            }
         }
 
         [Test]
-        public void DisplayReadRfid_CorrectId()
+        public void DisplayConnectError_CorrectText()
         {
-           
-            _uut.DisplayReadRfid();
 
-            Assert.That(_uut.DisplayId, Is.EqualTo(2));
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
 
+                _uut.DisplayConnectError();
+
+                string expected = string.Format("Tilslutningsfejl{0}", Environment.NewLine);
+                Assert.AreEqual(expected, sw.ToString());
+            }
         }
 
         [Test]
-        public void DisplayConnectError_CorrectId()
+        public void DisplayOccupied_CorrectText()
         {
-            _uut.DisplayConnectError();
 
-            Assert.That(_uut.DisplayId, Is.EqualTo(3));
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+
+                _uut.DisplayOccupied();
+
+                string expected = string.Format("Ladeskab optaget{0}", Environment.NewLine);
+                Assert.AreEqual(expected, sw.ToString());
+            }
         }
 
         [Test]
-        public void DisplayOccupied_CorrectId()
+        public void DisplayReadError_CorrectText()
         {
-            _uut.DisplayOccupied();
 
-            Assert.That(_uut.DisplayId, Is.EqualTo(4));
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+
+                _uut.DisplayReadError();
+
+                string expected = string.Format("Rfid fejl{0}", Environment.NewLine);
+                Assert.AreEqual(expected, sw.ToString());
+            }
         }
 
         [Test]
-        public void DisplayReadError_CorrectId()
+        public void DisplayRemovePhone_CorrectText()
         {
-            _uut.DisplayReadError();
 
-            Assert.That(_uut.DisplayId, Is.EqualTo(5));
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+
+                _uut.DisplayRemovePhone();
+
+                string expected = string.Format("Fjern telefon{0}", Environment.NewLine);
+                Assert.AreEqual(expected, sw.ToString());
+            }
         }
 
         [Test]
-        public void DisplayRemovePhone_CorrectId()
+        public void DisplayCharging_CorrectText()
         {
-            _uut.DisplayRemovePhone();
 
-            Assert.That(_uut.DisplayId, Is.EqualTo(6));
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+
+                _uut.DisplayCharging();
+
+                string expected = string.Format("Ladning foregår{0}", Environment.NewLine);
+                Assert.AreEqual(expected, sw.ToString());
+            }
         }
 
         [Test]
-        public void DisplayCharging_CorrectId()
+        public void DisplayFullyCharged_CorrectText()
         {
-            _uut.DisplayCharging();
 
-            Assert.That(_uut.DisplayId, Is.EqualTo(7));
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+
+                _uut.DisplayFullyCharged();
+
+                string expected = string.Format("Telefon er fuldt opladet{0}", Environment.NewLine);
+                Assert.AreEqual(expected, sw.ToString());
+            }
         }
 
         [Test]
-        public void DisplayFullyCharged_CorrectId()
+        public void DisplayChargingError_CorrectText()
         {
-            _uut.DisplayFullyCharged();
+            {
 
-            Assert.That(_uut.DisplayId, Is.EqualTo(8));
-        }
+                using (StringWriter sw = new StringWriter())
+                {
+                    Console.SetOut(sw);
 
-        [Test]
-        public void DisplayChargingError_CorrectId()
-        {
-            _uut.DisplayChargingError();
+                    _uut.DisplayChargingError();
 
-            Assert.That(_uut.DisplayId, Is.EqualTo(9));
+                    string expected = string.Format("FEJL{0}", Environment.NewLine);
+                    Assert.AreEqual(expected, sw.ToString());
+                }
+            }
         }
     }
 }
