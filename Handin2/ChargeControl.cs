@@ -8,13 +8,13 @@ using UsbSimulator;
 namespace Handin2
 {
 
-    internal class ChargeControl
+    public class ChargeControl
     {
         private double _current;
         private IUsbCharger _usbCharger;
-        private Display _display;
+        private IDisplay _display;
 
-        public ChargeControl(IUsbCharger usbCharger, Display display)
+        public ChargeControl(IUsbCharger usbCharger, IDisplay display)
         {
             _display = display;
             _usbCharger = usbCharger;
@@ -44,10 +44,7 @@ namespace Handin2
 
         public bool isConnected()
         {
-            if (_usbCharger.Connected == true)
-            {
-                _usbCharger.StartCharge();
-            }
+            
             
             return _usbCharger.Connected;
 

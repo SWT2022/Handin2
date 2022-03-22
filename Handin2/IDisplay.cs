@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Handin2
 {
-    internal interface IDisplay
+    public interface IDisplay
     {
         void DisplayConnectPhone();
 

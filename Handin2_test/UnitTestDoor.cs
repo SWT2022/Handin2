@@ -3,7 +3,7 @@ using Handin2;
 
 namespace Handin2_test
 {
-    public class Tests
+    public class UnitTestDoor
     {
         private Door _uut;
         private DoorStateEventArgs _DoorstateEventArgs;
