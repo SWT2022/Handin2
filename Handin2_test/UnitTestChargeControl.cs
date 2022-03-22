@@ -42,16 +42,77 @@ namespace Handin2_test
             Assert.That(uut.isConnected, Is.False);
         }
 
-        //[Test]
-        //public void Test_isConnected_true_StartCharge_isCalled()
-        //{
+        [Test]
+        public void Test_StartCharge()
+        {
 
-        //    usbCharger.Connected.Returns(true);
+            uut.StartCharge();
 
-        //    usbCharger.Received().StartCharge();
+            usbCharger.Received().StartCharge();
+        }
 
-        //}
+        [Test]
+        public void Test_StopCharge()
+        {
+
+            uut.StopCharge();
+
+            usbCharger.Received().StopCharge();
+        }
+
+
+        [TestCase(10)]
+        [TestCase(25)]
+        [TestCase(30)]
+        [TestCase(45)]
+        public void Test_CurrentChagned_currentIsCorrect(double newCurrent)
+        {
+
+            usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs { Current = newCurrent });
+            Assert.That(uut._current, Is.EqualTo(newCurrent));
+
+        }
+
+
+        [TestCase(3)]
+        [TestCase(5)]
+        public void Test_CurrentChagned_State_FullyCharged(double newCurrent)
+        {
+
+            usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs { Current = newCurrent });
+
+            display.Received().DisplayFullyCharged();
+
+
+        }
+
+        [TestCase(300)]
+        [TestCase(500)]
+        public void Test_CurrentChagned_State_Charging(double newCurrent)
+        {
+
+            usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs { Current = newCurrent });
+
+            display.Received().DisplayCharging();
+
+
+        }
+
+
+        [TestCase(600)]
+        public void Test_CurrentChagned_State_ChargingError(double newCurrent)
+        {
+
+            usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs { Current = newCurrent });
+
+            display.Received().DisplayChargingError();
+
+        }
+
 
 
     }
+
+
 }
+

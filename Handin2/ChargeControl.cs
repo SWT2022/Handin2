@@ -10,7 +10,7 @@ namespace Handin2
 
     public class ChargeControl
     {
-        private double _current;
+        public double _current;
         private IUsbCharger _usbCharger;
         private IDisplay _display;
 
@@ -38,6 +38,9 @@ namespace Handin2
                 StopCharge();
                 _display.DisplayChargingError();
             }
+            //else hvad skal der ellers ske
+
+
 
 
         }
