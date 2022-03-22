@@ -8,5 +8,24 @@ namespace Handin2
 {
     internal interface IDisplay
     {
+        void DisplayConnectPhone();
+
+        void DisplayReadRfid();
+
+        void DisplayConnectError();
+
+        void DisplayOccupied();
+
+        void DisplayReadError();
+
+        void DisplayRemovePhone();
+
+        void DisplayCharging();
+
+        void DisplayFullyCharged();
+
+        void DisplayChargingError();
+        
+
     }
 }
