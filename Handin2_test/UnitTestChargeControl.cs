@@ -115,9 +115,10 @@ namespace Handin2_test
         public void Test_InvalidValues_ExeptionThrown(double newCurrent)
         {
 
-            usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs { Current = newCurrent });
+            
 
-            Assert.That(() => uut.RegulateCharger(), Throws.TypeOf<ArgumentOutOfRangeException>());
+            Assert.That(() => usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs { Current = newCurrent }),
+                Throws.TypeOf<ArgumentOutOfRangeException>());
 
         }
 
