@@ -164,7 +164,7 @@ namespace Handin2_test
         }
 
         [Test]
-        public void Ladeskabe_isLocked_id_Wrong_Display_Correct()
+        public void Ladeskabe_Locked_id_Wrong_Display_Correct()
         {
             _usbCharger.Connected.Returns(true);
             uut.RfidDetected(5);
@@ -173,6 +173,45 @@ namespace Handin2_test
             _display.DisplayReadError();
 
         }
+
+        [Test]
+        public void Ladeskabe_Locked_Charger_Id_Correct_State_Correct()
+        {
+            _usbCharger.Connected.Returns(true);
+            uut.RfidDetected(5);
+            uut.RfidDetected(5);
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+
+                uut.GetState();
+
+                string expected = string.Format("Current state is: Available{0}", Environment.NewLine);
+                Assert.AreEqual(expected, sw.ToString());
+
+            }
+
+        }
+
+        [Test]
+        public void Ladeskabe_Locked_Charger_Id_Wrong_State_Correct()
+        {
+            _usbCharger.Connected.Returns(true);
+            uut.RfidDetected(5);
+            uut.RfidDetected(6);
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+
+                uut.GetState();
+
+                string expected = string.Format("Current state is: Locked{0}", Environment.NewLine);
+                Assert.AreEqual(expected, sw.ToString());
+
+            }
+
+        }
+
         // Door Opened
 
         #endregion
