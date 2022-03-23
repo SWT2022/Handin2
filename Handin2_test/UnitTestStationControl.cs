@@ -152,8 +152,27 @@ namespace Handin2_test
         }
 
         // Door Locked
+        [Test]
+        public void Ladeskabe_isLocked_id_Correct_Display_Correct()
+        {
+            _usbCharger.Connected.Returns(true);
+            uut.RfidDetected(5);
+            _display.Received().DisplayCharging();
+            uut.RfidDetected(5);
+            _display.DisplayRemovePhone();
 
+        }
 
+        [Test]
+        public void Ladeskabe_isLocked_id_Wrong_Display_Correct()
+        {
+            _usbCharger.Connected.Returns(true);
+            uut.RfidDetected(5);
+            _display.Received().DisplayCharging();
+            uut.RfidDetected(6);
+            _display.DisplayReadError();
+
+        }
         // Door Opened
 
         #endregion
@@ -181,8 +200,6 @@ namespace Handin2_test
             _display.Received().DisplayReadRfid();
 
         }
-
-       
 
         // RfidReader Event
 
