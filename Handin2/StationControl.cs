@@ -30,7 +30,7 @@ namespace Handin2
         private LadeskabState _state;
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
-
+        
         public StationControl(IChargeControl charger, IDoor door, IRfidReader reader, IDisplay display)
         {
             _display = display;
@@ -111,7 +111,6 @@ namespace Handin2
 
         public bool CheckId(int id, int oldId)
         {
-            // NOT IMPLEMENTED
             return true;
         }
 
@@ -119,12 +118,13 @@ namespace Handin2
         {
             Console.WriteLine("Current state is: " + _state);
         }
-       
+
 
         //Handle Events
         private void HandleDoorStateEvent(object s, DoorStateEventArgs e)
         {
             _doorState = e.DoorState;
+            
             if (_doorState == true)
             {
                 DoorOpened();

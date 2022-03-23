@@ -14,12 +14,11 @@ namespace Handin2_test
     public class UnitTestStationControl
     {
         private StationControl uut;
+
         private IDisplay _display;
         private IChargeControl _charger;
         private IDoor _door;
         private IRfidReader _reader;
-
-        //Helper 
         private IUsbCharger _usbCharger;
 
 
@@ -27,7 +26,6 @@ namespace Handin2_test
         public void Setup()
         {
             _usbCharger = Substitute.For<IUsbCharger>();
-            
             _display = Substitute.For<IDisplay>();
             _reader = Substitute.For<IRfidReader>();
             _charger = Substitute.For<IChargeControl>();
@@ -38,7 +36,12 @@ namespace Handin2_test
 
             uut = new StationControl( _charger, _door, _reader, _display );
         }
+
         #region Door Methods
+        /// <summary>
+        /// Test DoorOpened and DoorClosed
+        /// </summary>
+
         [Test]
         public void DoorOpened_returnsCorrect()
         {
@@ -54,6 +57,7 @@ namespace Handin2_test
             }
 
         }
+
         [Test]
         public void DoorClosed_returnsCorrect()
         {
@@ -72,9 +76,17 @@ namespace Handin2_test
         }
         #endregion
 
+
+
         #region Ladeskab states
+
+        /// <summary>
+        /// Test behavior in different states
+        /// </summary>
+
+        // Stat Available
         [Test]
-        public void Ladeskabe_isAvaible_initial_state()
+        public void Ladeskabe_isAvailable_initial_state()
         {
 
             using (StringWriter sw = new StringWriter())
@@ -104,9 +116,20 @@ namespace Handin2_test
             }
 
         }
+
+        // Door Locked
+
+
+        // Door Open
+
         #endregion
 
         #region Events
+        /// <summary>
+        /// Test events Doorstate and RfidReader
+        /// </summary>
+        
+        // Doorstate Event
         [Test]
         public void Doorstate_event_state_true_DisplayCorrect()
         {
@@ -117,13 +140,17 @@ namespace Handin2_test
         }
 
         [Test]
-        public void Doorstate_event_state_false_DisplayCorrect()
+        public void Doorstate_event_state_false_StateCorrect()
         {
-            _door.DoorStateEvent += Raise.EventWith(new DoorStateEventArgs { DoorState = false }); // True = Open
+            _door.DoorStateEvent += Raise.EventWith(new DoorStateEventArgs { DoorState = false }); // False = Closed
 
             _display.Received().DisplayReadRfid();
 
         }
+
+       
+
+        // RfidReader Event
 
         [TestCase(3)]
         public void RfidReaderEvent_Lock_DisplayCorrect(int newId)
@@ -157,7 +184,7 @@ namespace Handin2_test
             _reader.RfidReaderEvent += Raise.EventWith(new RfidReaderEventArgs { Id = sameId });
 
             _door.Received().LockDoor();
-
+           
             _reader.RfidReaderEvent += Raise.EventWith(new RfidReaderEventArgs { Id = sameId });
 
             _door.Received().UnlockDoor();
@@ -176,6 +203,8 @@ namespace Handin2_test
             _display.Received().DisplayReadError();
 
         }
+
+
 
         #endregion
 
