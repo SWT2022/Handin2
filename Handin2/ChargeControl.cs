@@ -52,13 +52,13 @@ namespace Handin2
 
         public void StartCharge()
         {
-            Console.WriteLine("Phone Charging started");
+            //Console.WriteLine("Phone Charging started");
             _usbCharger.StartCharge();
         }
 
         public void StopCharge()
         {
-            Console.WriteLine("Phone Charging stopped");
+            //Console.WriteLine("Phone Charging stopped");
             _usbCharger.StopCharge();
         }
 
