@@ -43,36 +43,52 @@ namespace Handin2_test
         /// </summary>
 
         [Test]
-        public void DoorOpened_returnsCorrect()
+        public void Ladeskabe_isAvaible_DoorOpened_DisplayCorrect()
         {
+            uut.DoorOpened();
+            _display.Received().DisplayConnectPhone();
 
+        }
+
+        [Test]
+        public void Ladeskabe_isAvaible_DoorOpened_StateCorrect()
+        {
+            uut.DoorOpened();
             using (StringWriter sw = new StringWriter())
             {
                 Console.SetOut(sw);
 
-                uut.DoorOpened();
+                uut.GetState();
 
-                string expected = string.Format("Door Opened{0}", Environment.NewLine);
+                string expected = string.Format("Current state is: DoorOpen{0}", Environment.NewLine);
                 Assert.AreEqual(expected, sw.ToString());
             }
 
         }
 
+
         [Test]
-        public void DoorClosed_returnsCorrect()
+        public void Ladeskabe_isOpen_DoorClosed_DisplayCorrect()
+        {
+            uut.DoorClosed();
+            _display.Received().DisplayReadRfid();
+        }
+
+        [Test]
+        public void Ladeskabe_isOpen_DoorClosed_StateCorrect()
         {
 
+            uut.DoorClosed();
             using (StringWriter sw = new StringWriter())
             {
                 Console.SetOut(sw);
 
-                uut.DoorClosed();
+                uut.GetState();
 
-                string expected = string.Format("Door Closed{0}", Environment.NewLine);
+                string expected = string.Format("Current state is: Available{0}", Environment.NewLine);
                 Assert.AreEqual(expected, sw.ToString());
             }
 
-            
         }
         #endregion
 
@@ -121,31 +137,7 @@ namespace Handin2_test
 
 
         // Door Opened
-        [Test]
-        public void Ladeskabe_isAvaible_DoorOpened_DisplayCorrect()
-        {
-
-            uut.DoorOpened();
-            _display.Received().DisplayConnectPhone();
-
-        }
-
-        [Test]
-        public void Ladeskabe_isAvaible_DoorOpened_StateCorrect()
-        {
-
-            uut.DoorOpened();
-            using (StringWriter sw = new StringWriter())
-            {
-                Console.SetOut(sw);
-
-                uut.GetState();
-
-                string expected = string.Format("Current state is: DoorOpen{0}", Environment.NewLine);
-                Assert.AreEqual(expected, sw.ToString());
-            }
-
-        }
+       
         #endregion
 
         #region Events
