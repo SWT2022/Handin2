@@ -19,7 +19,7 @@ namespace Handin2_test
         private IDoor _door;
         private IRfidReader _reader;
 
-        //Helper - Not working
+        //Helper 
         private IUsbCharger _usbCharger;
 
 
@@ -52,7 +52,6 @@ namespace Handin2_test
                 string expected = string.Format("Door Opened{0}", Environment.NewLine);
                 Assert.AreEqual(expected, sw.ToString());
             }
-
 
         }
         [Test]
@@ -110,32 +109,16 @@ namespace Handin2_test
 
         #region Events
         [Test]
-        public void Doorstate_event_is_stateEqual_Open()
+        public void Doorstate_event_state_true_DisplayCorrect()
         {
             _door.DoorStateEvent += Raise.EventWith(new DoorStateEventArgs { DoorState = true } ); // True = Open
 
             _display.Received().DisplayConnectPhone();
 
         }
-        [Test]
-        public void Doorstate_event_is_stateEqual_Avaible()
-        {
-            _door.DoorStateEvent += Raise.EventWith(new DoorStateEventArgs { DoorState = true }); // True = Open
-
-            using (StringWriter sw = new StringWriter())
-            {
-                Console.SetOut(sw);
-
-                uut.GetState();
-
-                string expected = string.Format("Current state is: Available{0}", Environment.NewLine);
-                Assert.AreEqual(expected, sw.ToString());
-            }
-
-        }
 
         [Test]
-        public void Doorstate_event_is_stateEqual_Closed()
+        public void Doorstate_event_state_false_DisplayCorrect()
         {
             _door.DoorStateEvent += Raise.EventWith(new DoorStateEventArgs { DoorState = false }); // True = Open
 
