@@ -120,15 +120,39 @@ namespace Handin2_test
         // Door Locked
 
 
-        // Door Open
+        // Door Opened
+        [Test]
+        public void Ladeskabe_isAvaible_DoorOpened_DisplayCorrect()
+        {
 
+            uut.DoorOpened();
+            _display.Received().DisplayConnectPhone();
+
+        }
+
+        [Test]
+        public void Ladeskabe_isAvaible_DoorOpened_StateCorrect()
+        {
+
+            uut.DoorOpened();
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+
+                uut.GetState();
+
+                string expected = string.Format("Current state is: DoorOpen{0}", Environment.NewLine);
+                Assert.AreEqual(expected, sw.ToString());
+            }
+
+        }
         #endregion
 
         #region Events
         /// <summary>
         /// Test events Doorstate and RfidReader
         /// </summary>
-        
+
         // Doorstate Event
         [Test]
         public void Doorstate_event_state_true_DisplayCorrect()

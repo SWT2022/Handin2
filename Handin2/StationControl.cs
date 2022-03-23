@@ -101,11 +101,13 @@ namespace Handin2
         public void DoorOpened()
         {
             Console.WriteLine("Door Opened");
+            _state = LadeskabState.DoorOpen;
             _display.DisplayConnectPhone();
         }
         public void DoorClosed()
         {
             Console.WriteLine("Door Closed");
+            _state = LadeskabState.Available;
             _display.DisplayReadRfid();
         }
 
