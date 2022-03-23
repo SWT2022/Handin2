@@ -92,7 +92,6 @@ namespace Handin2_test
         public void Ladeskabe_isAvaible_Charger_isConnected()
         {
             _usbCharger.Connected.Returns(true);
-            _charger.isConnected(); // returns false
             uut.RfidDetected(5);
             using (StringWriter sw = new StringWriter())
             {
@@ -126,8 +125,57 @@ namespace Handin2_test
 
         }
 
-        
+        [TestCase(3)]
+        public void RfidReaderEvent_Lock_DisplayCorrect(int newId)
+        {
+            _usbCharger.Connected.Returns(true);
 
+            _reader.RfidReaderEvent += Raise.EventWith(new RfidReaderEventArgs{ Id = newId });
+
+            _display.Received().DisplayCharging();
+
+        }
+
+        [TestCase(3)]
+        public void RfidReaderEvent_Unlock_Correct_Id_DisplayCorrect(int sameId)
+        {
+            _usbCharger.Connected.Returns(true);
+
+            _reader.RfidReaderEvent += Raise.EventWith(new RfidReaderEventArgs { Id = sameId });
+
+            _reader.RfidReaderEvent += Raise.EventWith(new RfidReaderEventArgs { Id = sameId });
+
+            _display.Received().DisplayRemovePhone();
+
+        }
+
+        [TestCase(3)]
+        public void RfidReaderEvent_Unlock_Correct_Id_StateCorrect(int sameId)
+        {
+            _usbCharger.Connected.Returns(true);
+
+            _reader.RfidReaderEvent += Raise.EventWith(new RfidReaderEventArgs { Id = sameId });
+
+            _door.Received().LockDoor();
+
+            _reader.RfidReaderEvent += Raise.EventWith(new RfidReaderEventArgs { Id = sameId });
+
+            _door.Received().UnlockDoor();
+
+        }
+
+        [TestCase(3, 5)]
+        public void RfidReaderEvent_Unlock_Wrong_Id_DisplayCorrect(int firstId, int secondId)
+        {
+            _usbCharger.Connected.Returns(true);
+
+            _reader.RfidReaderEvent += Raise.EventWith(new RfidReaderEventArgs { Id = firstId });
+
+            _reader.RfidReaderEvent += Raise.EventWith(new RfidReaderEventArgs { Id = secondId });
+
+            _display.Received().DisplayReadError();
+
+        }
 
         #endregion
 

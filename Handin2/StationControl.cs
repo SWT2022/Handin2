@@ -86,10 +86,12 @@ namespace Handin2
                         }
 
                         Console.WriteLine("Tag din telefon ud af skabet og luk døren");
+                        _display.DisplayRemovePhone();
                         _state = LadeskabState.Available;
                     }
                     else
                     {
+                        _display.DisplayReadError();
                         Console.WriteLine("Forkert RFID tag");
                     }
 
