@@ -8,7 +8,7 @@ using UsbSimulator;
 namespace Handin2
 {
 
-    public class ChargeControl
+    public class ChargeControl : IChargeControl
     {
         public double _current;
         private IUsbCharger _usbCharger;

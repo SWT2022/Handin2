@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace Handin2
 {
-    public interface IRfidReader
+    public interface IChargeControl
     {
-        event EventHandler<RfidReaderEventArgs> RfidReaderEvent;
-        void setId(int id);
+        bool isConnected();
 
+        void StartCharge();
+
+        void StopCharge();
     }
 }

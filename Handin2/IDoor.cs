@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Handin2
 {
-    internal interface IDoor
+    public interface IDoor
     {
         event EventHandler<DoorStateEventArgs> DoorStateEvent;
 

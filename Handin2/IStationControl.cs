@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace Handin2
 {
-    public interface IRfidReader
+    public interface IStationControl
     {
-        event EventHandler<RfidReaderEventArgs> RfidReaderEvent;
-        void setId(int id);
+        void DoorOpened();
 
+        void DoorClosed();
+
+        void RfidDetected(int id);
     }
 }
