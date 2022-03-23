@@ -19,13 +19,22 @@ namespace Handin2_test
         private IDoor _door;
         private IRfidReader _reader;
 
+        //Helper - Not working
+        private IUsbCharger _usbCharger;
+
+
         [SetUp]
         public void Setup()
         {
+            _usbCharger = Substitute.For<IUsbCharger>();
+            
             _display = Substitute.For<IDisplay>();
             _reader = Substitute.For<IRfidReader>();
             _charger = Substitute.For<IChargeControl>();
-            _door = Substitute.For<IDoor>();    
+            _door = Substitute.For<IDoor>();
+
+            //Initialize ChargeControl
+            _charger = new ChargeControl(_usbCharger, _display);
 
             uut = new StationControl( _charger, _door, _reader, _display );
         }
@@ -44,6 +53,54 @@ namespace Handin2_test
                 Assert.AreEqual(expected, sw.ToString());
             }
 
+
+        }
+        [Test]
+        public void DoorClosed_returnsCorrect()
+        {
+
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+
+                uut.DoorClosed();
+
+                string expected = string.Format("Door Closed{0}", Environment.NewLine);
+                Assert.AreEqual(expected, sw.ToString());
+            }
+
+
+        }
+        [Test]
+        public void Ladeskabe_isAvaible_initial_state()
+        {
+
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+
+                uut.GetState();
+
+                string expected = string.Format("Current state is: Available{0}", Environment.NewLine);
+                Assert.AreEqual(expected, sw.ToString());
+            }
+
+        }
+        [Test]
+        public void Ladeskabe_isAvaible_Charger_isConnected()
+        {
+            usbCharger.Connected.Returns(true);
+            _charger.isConnected(); // returns false
+            uut.RfidDetected(5);
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+
+                uut.GetState();
+
+                string expected = string.Format("Current state is: Locked{0}", Environment.NewLine);
+                Assert.AreEqual(expected, sw.ToString());
+            }
 
         }
 
