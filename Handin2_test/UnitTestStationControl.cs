@@ -100,7 +100,7 @@ namespace Handin2_test
         /// Test behavior in different states
         /// </summary>
 
-        // Stat Available
+        // State Available
         [Test]
         public void Ladeskabe_isAvailable_initial_state()
         {
@@ -117,7 +117,7 @@ namespace Handin2_test
 
         }
         [Test]
-        public void Ladeskabe_isAvaible_Charger_isConnected()
+        public void Ladeskabe_isAvaible_Charger_isConnected_State_Correct()
         {
             _usbCharger.Connected.Returns(true);
             uut.RfidDetected(5);
@@ -133,11 +133,29 @@ namespace Handin2_test
 
         }
 
+        [Test]
+        public void Ladeskabe_isAvaible_Charger_isConnected_Display_Correct()
+        {
+            _usbCharger.Connected.Returns(true);
+            uut.RfidDetected(5);
+            _display.Received().DisplayCharging();
+
+        }
+
+        [Test]
+        public void Ladeskabe_isAvaible_Charger_NOTConnected_Display_Correct()
+        {
+            _usbCharger.Connected.Returns(false);
+            uut.RfidDetected(5);
+            _display.Received().DisplayConnectError();
+
+        }
+
         // Door Locked
 
 
         // Door Opened
-       
+
         #endregion
 
         #region Events
