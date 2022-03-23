@@ -38,7 +38,7 @@ namespace Handin2_test
 
             uut = new StationControl( _charger, _door, _reader, _display );
         }
-
+        #region Door Methods
         [Test]
         public void DoorOpened_returnsCorrect()
         {
@@ -69,8 +69,11 @@ namespace Handin2_test
                 Assert.AreEqual(expected, sw.ToString());
             }
 
-
+            
         }
+        #endregion
+
+        #region Ladeskab states
         [Test]
         public void Ladeskabe_isAvaible_initial_state()
         {
@@ -89,7 +92,7 @@ namespace Handin2_test
         [Test]
         public void Ladeskabe_isAvaible_Charger_isConnected()
         {
-            usbCharger.Connected.Returns(true);
+            _usbCharger.Connected.Returns(true);
             _charger.isConnected(); // returns false
             uut.RfidDetected(5);
             using (StringWriter sw = new StringWriter())
@@ -103,6 +106,47 @@ namespace Handin2_test
             }
 
         }
+        #endregion
+
+        #region Events
+        [Test]
+        public void Doorstate_event_is_stateEqual_Open()
+        {
+            _door.DoorStateEvent += Raise.EventWith(new DoorStateEventArgs { DoorState = true } ); // True = Open
+
+            _display.Received().DisplayConnectPhone();
+
+        }
+        [Test]
+        public void Doorstate_event_is_stateEqual_Avaible()
+        {
+            _door.DoorStateEvent += Raise.EventWith(new DoorStateEventArgs { DoorState = true }); // True = Open
+
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+
+                uut.GetState();
+
+                string expected = string.Format("Current state is: Available{0}", Environment.NewLine);
+                Assert.AreEqual(expected, sw.ToString());
+            }
+
+        }
+
+        [Test]
+        public void Doorstate_event_is_stateEqual_Closed()
+        {
+            _door.DoorStateEvent += Raise.EventWith(new DoorStateEventArgs { DoorState = false }); // True = Open
+
+            _display.Received().DisplayReadRfid();
+
+        }
+
+        
+
+
+        #endregion
 
     }
 
