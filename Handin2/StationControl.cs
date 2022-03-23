@@ -101,7 +101,7 @@ namespace Handin2
         }
         public void DoorOpened()
         {
-            Console.WriteLine("Door Opened");
+            //Console.WriteLine("Door Opened");
             _state = LadeskabState.DoorOpen;
             _display.DisplayConnectPhone();
         }

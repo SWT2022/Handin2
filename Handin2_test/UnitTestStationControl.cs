@@ -45,6 +45,7 @@ namespace Handin2_test
         [Test]
         public void Ladeskabe_isAvaible_DoorOpened_DisplayCorrect()
         {
+          
             uut.DoorOpened();
             _display.Received().DisplayConnectPhone();
 
@@ -53,6 +54,7 @@ namespace Handin2_test
         [Test]
         public void Ladeskabe_isAvaible_DoorOpened_StateCorrect()
         {
+
             uut.DoorOpened();
             using (StringWriter sw = new StringWriter())
             {

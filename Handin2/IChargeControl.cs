@@ -13,5 +13,7 @@ namespace Handin2
         void StartCharge();
 
         void StopCharge();
+
+        void RegulateCharger();
     }
 }
