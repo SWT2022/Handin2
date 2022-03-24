@@ -14,26 +14,42 @@ namespace Handin2_test
 
             _uut = new Door();
 
-            _uut.DoorStateEvent +=
-                (o, args) =>
-                {
-                    _DoorstateEventArgs = args;
-                };
+            
         }
 
         [Test]
         public void Door_Locked_EventFired()
         {
+            _uut.DoorStateEvent +=
+                (o, args) =>
+                {
+                    _DoorstateEventArgs = args;
+                };
             //Act
             _uut.UnlockDoor();
             _uut.LockDoor();
 
             Assert.That(_DoorstateEventArgs, Is.Not.Null);
         }
+        [Test]
+        public void Door_Locked_EventFired_NO_Lisentner()
+        {
+
+            //Act
+            _uut.UnlockDoor();
+            _uut.LockDoor();
+
+            Assert.That(_DoorstateEventArgs, Is.Null);
+        }
 
         [Test]
         public void Door_Locked_CorrectValue()
         {
+            _uut.DoorStateEvent +=
+                (o, args) =>
+                {
+                    _DoorstateEventArgs = args;
+                };
             //Act
             _uut.UnlockDoor();
             _uut.LockDoor();
@@ -44,6 +60,11 @@ namespace Handin2_test
         [Test]
         public void Door_UnLocked_EventFired()
         {
+            _uut.DoorStateEvent +=
+                (o, args) =>
+                {
+                    _DoorstateEventArgs = args;
+                };
             //Act
             _uut.LockDoor();
             _uut.UnlockDoor();
@@ -54,6 +75,11 @@ namespace Handin2_test
         [Test]
         public void Door_Unlocked_CorrectValue()
         {
+            _uut.DoorStateEvent +=
+                (o, args) =>
+                {
+                    _DoorstateEventArgs = args;
+                };
             //Act
             _uut.LockDoor();
             _uut.UnlockDoor();
