@@ -55,13 +55,7 @@ namespace Handin2_test
         {
             uut.DoorOpened();
 
-            StringWriter sw = new StringWriter();
-            Console.SetOut(sw);
-
-            uut.GetState();
-
-            string expected = string.Format("Current state is: DoorOpen{0}", Environment.NewLine);
-            Assert.AreEqual(expected, sw.ToString());
+            Assert.AreEqual(uut.GetState(), "Current state is: DoorOpen");
             //using (StringWriter sw = new StringWriter())
             //{
             //    Console.SetOut(sw);
@@ -87,15 +81,16 @@ namespace Handin2_test
         {
 
             uut.DoorClosed();
+            Assert.AreEqual(uut.GetState(), "Current state is: Available");
+            //using (StringWriter sw = new StringWriter())
+            //{
+            //    Console.SetOut(sw);
 
-            StringWriter sw = new StringWriter();
-            Console.SetOut(sw);
+            //    uut.GetState();
 
-            uut.GetState();
-
-            string expected = string.Format("Current state is: Available{0}", Environment.NewLine);
-            Assert.AreEqual(expected, sw.ToString());
-            
+            //    string expected = string.Format("Current state is: Available{0}", Environment.NewLine);
+            //    Assert.AreEqual(expected, sw.ToString());
+            //}
 
         }
         #endregion
@@ -112,15 +107,16 @@ namespace Handin2_test
         [Test]
         public void Ladeskabe_isAvailable_initial_state()
         {
-            StringWriter sw = new StringWriter();
-            Console.SetOut(sw);
 
-            uut.GetState();
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
 
-            string expected = string.Format("Current state is: Available{0}", Environment.NewLine);
-            Assert.AreEqual(expected, sw.ToString());
+                uut.GetState();
 
-            
+                Assert.AreEqual(uut.GetState(), "Current state is: Available");
+                
+            }
 
         }
         [Test]
@@ -128,14 +124,8 @@ namespace Handin2_test
         {
             _usbCharger.Connected.Returns(true);
             uut.RfidDetected(5);
+            Assert.AreEqual(uut.GetState(), "Current state is: Locked");
 
-            StringWriter sw = new StringWriter();
-            Console.SetOut(sw);
-
-            uut.GetState();
-
-            string expected = string.Format("Current state is: Locked{0}", Environment.NewLine);
-            Assert.AreEqual(expected, sw.ToString());
             //using (StringWriter sw = new StringWriter())
             //{
             //    Console.SetOut(sw);
@@ -195,14 +185,7 @@ namespace Handin2_test
             _usbCharger.Connected.Returns(true);
             uut.RfidDetected(5);
             uut.RfidDetected(5);
-
-            StringWriter sw = new StringWriter();
-            Console.SetOut(sw);
-
-            uut.GetState();
-
-            string expected = string.Format("Current state is: Available{0}", Environment.NewLine);
-            Assert.AreEqual(expected, sw.ToString());
+            Assert.AreEqual(uut.GetState(), "Current state is: Available");
 
             //using (StringWriter sw = new StringWriter())
             //{
@@ -224,13 +207,8 @@ namespace Handin2_test
             uut.RfidDetected(5);
             uut.RfidDetected(6);
 
-            StringWriter sw = new StringWriter();
-            Console.SetOut(sw);
+            Assert.AreEqual(uut.GetState(), "Current state is: Locked");
 
-            uut.GetState();
-
-            string expected = string.Format("Current state is: Locked{0}", Environment.NewLine);
-            Assert.AreEqual(expected, sw.ToString());
             //using (StringWriter sw = new StringWriter())
             //{
             //    Console.SetOut(sw);

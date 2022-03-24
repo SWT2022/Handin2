@@ -101,13 +101,13 @@ namespace Handin2
         }
         public void DoorOpened()
         {
-            Console.WriteLine("Door Opened");
+            //Console.WriteLine("Door Opened");
             _state = LadeskabState.DoorOpen;
             _display.DisplayConnectPhone();
         }
         public void DoorClosed()
         {
-            Console.WriteLine("Door Closed");
+            //Console.WriteLine("Door Closed");
             _state = LadeskabState.Available;
             _display.DisplayReadRfid();
         }
@@ -117,9 +117,10 @@ namespace Handin2
             return true;
         }
 
-        public void GetState()
+        public string GetState()
         {
-            Console.WriteLine("Current state is: " + _state);
+            return ("Current state is: " + _state);
+            //Console.WriteLine("Current state is: " + _state);
         }
 
 
