@@ -27,6 +27,7 @@ namespace UsbSimulator.Test
         [Test]
         public void ctor_CurentValueIsZero()
         {
+            //
             Assert.That(_uut.CurrentValue, Is.Zero);
         }
 
