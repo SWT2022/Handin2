@@ -24,6 +24,11 @@ namespace Handin2
         private void HandleCurrentValueEvent(object s, CurrentEventArgs e)
         {
             _current = e.Current;
+            RegulateCharger();
+        }
+
+        public void RegulateCharger()
+        {
             if (_current > 0 && _current <= 5)
             {
                 StopCharge();
@@ -38,11 +43,8 @@ namespace Handin2
                 StopCharge();
                 _display.DisplayChargingError();
             }
-            //else hvad skal der ellers ske
-
-
-
-
+            else
+                throw new ArgumentOutOfRangeException("Current is out of range");
         }
 
         public bool isConnected()
