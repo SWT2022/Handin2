@@ -45,7 +45,7 @@ namespace Handin2
             {
                 StopCharge();
                 _isCharging = false;
-                //_display.DisplayChargingError();
+                _display.DisplayChargingError();
             }
             else
                 _isCharging = false;

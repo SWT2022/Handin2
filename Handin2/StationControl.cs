@@ -59,7 +59,7 @@ namespace Handin2
                         {
                             writer.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", id);
                         }
-                        //_display.DisplayCharging();
+                        _display.DisplayCharging();
                         _display.DisplayOccupied();
                         //Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
                         _state = LadeskabState.Locked;
