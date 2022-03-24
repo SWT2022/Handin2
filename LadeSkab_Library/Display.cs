@@ -53,7 +53,5 @@ namespace Handin2
         {
             Console.WriteLine("FEJL");
         }
-
-        public int DisplayId;
     }
 }
