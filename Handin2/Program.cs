@@ -17,7 +17,7 @@ class Program
         do
         {
             string input;
-            System.Console.WriteLine("Indtast E, O, C, R: ");
+            System.Console.WriteLine("Indtast E, O, C, R, S, A: ");
             input = Console.ReadLine();
             if (string.IsNullOrEmpty(input)) continue;
 
@@ -41,6 +41,12 @@ class Program
 
                     int id = Convert.ToInt32(idString);
                     rfidReader.setId(id);
+                    break;
+                case 'S':
+                    usbChargerSimulator.SimulateConnected(true);
+                    break;
+                case 'A':
+                    usbChargerSimulator.SimulateConnected(false);
                     break;
 
                 default:

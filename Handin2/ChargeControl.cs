@@ -36,15 +36,15 @@ namespace Handin2
             }
             else if (_current > 5 && _current <= 500)
             {
-                _display.DisplayCharging();
+                //_display.DisplayCharging();
             }
             else if (_current > 500)
             {
                 StopCharge();
                 _display.DisplayChargingError();
             }
-            else
-                throw new ArgumentOutOfRangeException("Current is out of range");
+            //else
+                //throw new ArgumentOutOfRangeException("Current is out of range");
         }
 
         public bool isConnected()

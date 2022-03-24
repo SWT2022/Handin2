@@ -52,7 +52,7 @@ namespace Handin2
                     // Check for ladeforbindelse
                     if (_charger.isConnected())
                     {
-                        _door.LockDoor();
+                        //_door.LockDoor();
                         _charger.StartCharge();
                         _oldId = id;
                         using (var writer = File.AppendText(logFile))
@@ -60,6 +60,7 @@ namespace Handin2
                             writer.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", id);
                         }
                         _display.DisplayCharging();
+                        _display.DisplayOccupied();
                         //Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
                         _state = LadeskabState.Locked;
                     }
@@ -76,11 +77,12 @@ namespace Handin2
                     break;
 
                 case LadeskabState.Locked:
+                    
                     // Check for correct ID
                     if (id == _oldId)
                     {
                         _charger.StopCharge();
-                        _door.UnlockDoor();
+                        //_door.UnlockDoor();
                         using (var writer = File.AppendText(logFile))
                         {
                             writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", id);
@@ -131,10 +133,10 @@ namespace Handin2
             
             if (_doorState == true)
             {
-                DoorOpened();
+                DoorClosed();
             }
             else
-                DoorClosed();
+                DoorOpened();
         }
 
         private void HandleRfidReaderEvent(object s, RfidReaderEventArgs e)
