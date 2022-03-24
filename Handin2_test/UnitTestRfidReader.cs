@@ -24,6 +24,7 @@ namespace Handin2_test
         [Test]
         public void SetID_NO_EventFired()
         {
+            //
             Assert.That(_RfidReaderEventArgs, Is.Null);
         }
 
