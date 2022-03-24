@@ -17,7 +17,7 @@ class Program
         do
         {
             string input;
-            System.Console.WriteLine("Indtast E, O, C, R, S, A: ");
+            System.Console.WriteLine("Indtast E, O, C, R, S, A, L: ");
             input = Console.ReadLine();
             if (string.IsNullOrEmpty(input)) continue;
 
@@ -48,7 +48,9 @@ class Program
                 case 'A':
                     usbChargerSimulator.SimulateConnected(false);
                     break;
-
+                case 'L':
+                    usbChargerSimulator.SimulateOverload(true);
+                    break;
                 default:
                     break;
             }

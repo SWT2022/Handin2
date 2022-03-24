@@ -39,17 +39,17 @@ namespace Handin2
             Console.WriteLine("Fjern telefon");
         }
 
-        public void DisplayCharging() //Tilføj til klassediagram?
+        public void DisplayCharging() 
         {
             Console.WriteLine("Ladning foregår");
         }
 
-        public void DisplayFullyCharged() //Tilføj til klassediagram?
+        public void DisplayFullyCharged() 
         {
             Console.WriteLine("Telefon er fuldt opladet");
         }
 
-        public void DisplayChargingError() //Tilføj til klassediagram?
+        public void DisplayChargingError()
         {
             Console.WriteLine("FEJL");
         }
