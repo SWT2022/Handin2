@@ -58,15 +58,6 @@ namespace Handin2_test
             uut.DoorOpened();
 
             Assert.AreEqual(uut.GetState(), "Current state is: DoorOpen");
-            //using (StringWriter sw = new StringWriter())
-            //{
-            //    Console.SetOut(sw);
-
-            //    uut.GetState();
-
-            //    string expected = string.Format("Current state is: DoorOpen{0}", Environment.NewLine);
-            //    Assert.AreEqual(expected, sw.ToString());
-            //}
 
         }
 
@@ -84,15 +75,6 @@ namespace Handin2_test
 
             uut.DoorClosed();
             Assert.AreEqual(uut.GetState(), "Current state is: Available");
-            //using (StringWriter sw = new StringWriter())
-            //{
-            //    Console.SetOut(sw);
-
-            //    uut.GetState();
-
-            //    string expected = string.Format("Current state is: Available{0}", Environment.NewLine);
-            //    Assert.AreEqual(expected, sw.ToString());
-            //}
 
         }
         #endregion
@@ -127,17 +109,6 @@ namespace Handin2_test
             _usbCharger.Connected.Returns(true);
             uut.RfidDetected(5);
             Assert.AreEqual(uut.GetState(), "Current state is: Locked");
-
-            //using (StringWriter sw = new StringWriter())
-            //{
-            //    Console.SetOut(sw);
-
-            //    uut.GetState();
-
-            //    string expected = string.Format("Current state is: Locked{0}", Environment.NewLine);
-            //    Assert.AreEqual(expected, sw.ToString());
-            //}
-
         }
 
         [Test]
@@ -188,18 +159,6 @@ namespace Handin2_test
             uut.RfidDetected(5);
             uut.RfidDetected(5);
             Assert.AreEqual(uut.GetState(), "Current state is: Available");
-
-            //using (StringWriter sw = new StringWriter())
-            //{
-            //    Console.SetOut(sw);
-
-            //    uut.GetState();
-
-            //    string expected = string.Format("Current state is: Available{0}", Environment.NewLine);
-            //    Assert.AreEqual(expected, sw.ToString());
-
-            //}
-
         }
 
         [Test]
@@ -210,17 +169,6 @@ namespace Handin2_test
             uut.RfidDetected(6);
 
             Assert.AreEqual(uut.GetState(), "Current state is: Locked");
-
-            //using (StringWriter sw = new StringWriter())
-            //{
-            //    Console.SetOut(sw);
-
-            //    uut.GetState();
-
-            //    string expected = string.Format("Current state is: Locked{0}", Environment.NewLine);
-            //    Assert.AreEqual(expected, sw.ToString());
-
-            //}
 
         }
 
