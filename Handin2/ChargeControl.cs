@@ -11,11 +11,13 @@ namespace Handin2
     public class ChargeControl : IChargeControl
     {
         public double _current;
+        private bool _isCharging;
         private IUsbCharger _usbCharger;
         private IDisplay _display;
 
         public ChargeControl(IUsbCharger usbCharger, IDisplay display)
         {
+            _isCharging = false;
             _display = display;
             _usbCharger = usbCharger;
             _usbCharger.CurrentValueEvent += HandleCurrentValueEvent;
@@ -32,19 +34,21 @@ namespace Handin2
             if (_current > 0 && _current <= 5)
             {
                 StopCharge();
+                _isCharging = false;
                 _display.DisplayFullyCharged();
             }
             else if (_current > 5 && _current <= 500)
             {
-                //_display.DisplayCharging();
+                _isCharging = true;
             }
             else if (_current > 500)
             {
                 StopCharge();
-                _display.DisplayChargingError();
+                _isCharging = false;
+                //_display.DisplayChargingError();
             }
-            //else
-                //throw new ArgumentOutOfRangeException("Current is out of range");
+            else
+                _isCharging = false;
         }
 
         public bool isConnected()
@@ -62,6 +66,11 @@ namespace Handin2
         {
             //Console.WriteLine("Phone Charging stopped");
             _usbCharger.StopCharge();
+        }
+
+        public bool IsCharging()
+        {
+            return _isCharging;
         }
 
     }

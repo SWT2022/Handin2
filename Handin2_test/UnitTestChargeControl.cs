@@ -94,7 +94,7 @@ namespace Handin2_test
 
             usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs { Current = newCurrent });
 
-            display.Received().DisplayCharging();
+            Assert.That(uut.IsCharging, Is.True);
 
 
         }
