@@ -185,18 +185,18 @@ namespace Handin2_test
         [Test]
         public void Doorstate_event_state_true_DisplayCorrect()
         {
-            _door.DoorStateEvent += Raise.EventWith(new DoorStateEventArgs { DoorState = true } ); // True = Open
+            _door.DoorStateEvent += Raise.EventWith(new DoorStateEventArgs { DoorState = true } ); // True = Closed
 
-            _display.Received().DisplayConnectPhone();
+            _display.Received().DisplayReadRfid();
 
         }
 
         [Test]
         public void Doorstate_event_state_false_StateCorrect()
         {
-            _door.DoorStateEvent += Raise.EventWith(new DoorStateEventArgs { DoorState = false }); // False = Closed
+            _door.DoorStateEvent += Raise.EventWith(new DoorStateEventArgs { DoorState = false }); // False = Open
 
-            _display.Received().DisplayReadRfid();
+            _display.Received().DisplayConnectPhone();
 
         }
 
@@ -226,20 +226,20 @@ namespace Handin2_test
 
         }
 
-        [TestCase(3)]
-        public void RfidReaderEvent_Unlock_Correct_Id_StateCorrect(int sameId)
-        {
-            _usbCharger.Connected.Returns(true);
+        //[TestCase(3)]
+        //public void RfidReaderEvent_Unlock_Correct_Id_StateCorrect(int sameId)
+        //{
+        //    _usbCharger.Connected.Returns(true);
 
-            _reader.RfidReaderEvent += Raise.EventWith(new RfidReaderEventArgs { Id = sameId });
+        //    _reader.RfidReaderEvent += Raise.EventWith(new RfidReaderEventArgs { Id = sameId });
 
-            _door.Received().LockDoor();
+        //    _Charger.Received().LockDoor();
            
-            _reader.RfidReaderEvent += Raise.EventWith(new RfidReaderEventArgs { Id = sameId });
+        //    _reader.RfidReaderEvent += Raise.EventWith(new RfidReaderEventArgs { Id = sameId });
 
-            _door.Received().UnlockDoor();
+        //    _door.Received().UnlockDoor();
 
-        }
+        //}
 
         [TestCase(3, 5)]
         public void RfidReaderEvent_Unlock_Wrong_Id_DisplayCorrect(int firstId, int secondId)
