@@ -15,7 +15,7 @@ namespace Handin2
 
         public void setId(int newId)
         {
-            if(_oldId != newId)
+            //if(_oldId != newId)
             {
                 OnRfiRead(new RfidReaderEventArgs { Id = newId });
                 _oldId = newId;
