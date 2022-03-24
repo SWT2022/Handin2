@@ -14,11 +14,6 @@ namespace Handin2_test
 
             _uut = new RfidReader();
 
-            _uut.RfidReaderEvent +=
-                (o, args) =>
-                {
-                    _RfidReaderEventArgs = args;
-                };
         }
 
         [Test]
@@ -28,14 +23,13 @@ namespace Handin2_test
             Assert.That(_RfidReaderEventArgs, Is.Null);
         }
 
+        
+
         [Test]
-        public void SetID_NO_EventFired_NO_Lisentner()
+        public void SetID_EventFired_NO_Lisentner()
         {
-            _uut.RfidReaderEvent -=
-                (o, args) =>
-                {
-                    _RfidReaderEventArgs = args;
-                };
+            //Act
+            _uut.setId(5);
 
             Assert.That(_RfidReaderEventArgs, Is.Null);
         }
@@ -43,39 +37,26 @@ namespace Handin2_test
         [Test]
         public void SetID_EventFired()
         {
-            //Act
-            _uut.setId(5);
-
-            Assert.That(_RfidReaderEventArgs, Is.Not.Null);
-        }
-
-        [Test]
-        public void SetID_EventFired_NO_Lisentner()
-        {
-            _uut.RfidReaderEvent -=
+            _uut.RfidReaderEvent +=
                 (o, args) =>
                 {
                     _RfidReaderEventArgs = args;
                 };
+
             //Act
             _uut.setId(5);
 
             Assert.That(_RfidReaderEventArgs, Is.Not.Null);
         }
+
+
+
+    
 
         [Test]
         public void SetId_CorrectValue()
         {
-            //Act
-            _uut.setId(5);
-
-            Assert.That(_RfidReaderEventArgs.Id, Is.EqualTo(5));
-
-        }
-        [Test]
-        public void SetId_CorrectValue_NO_Lisentner()
-        {
-            _uut.RfidReaderEvent -=
+            _uut.RfidReaderEvent +=
                 (o, args) =>
                 {
                     _RfidReaderEventArgs = args;
@@ -86,21 +67,21 @@ namespace Handin2_test
             Assert.That(_RfidReaderEventArgs.Id, Is.EqualTo(5));
 
         }
+        //[Test]
+        //public void SetId_CorrectValue_NO_Lisentner()
+        //{
+  
+        //    //Act
+        //    _uut.setId(5);
+
+        //    Assert.That(_RfidReaderEventArgs.Id, Is.Null);
+
+        //}
 
         [Test]
         public void SetId_Twice_CorrectValue()
         {
-            //Act
-            _uut.setId(5);
-            _uut.setId(6);
-
-            Assert.That(_RfidReaderEventArgs.Id, Is.EqualTo(6));
-        }
-        [Test]
-        public void SetId_Twice_CorrectValue_NO_Lisentner()
-        {
-
-            _uut.RfidReaderEvent -=
+            _uut.RfidReaderEvent +=
                 (o, args) =>
                 {
                     _RfidReaderEventArgs = args;
@@ -111,35 +92,55 @@ namespace Handin2_test
 
             Assert.That(_RfidReaderEventArgs.Id, Is.EqualTo(6));
         }
+        //[Test]
+        //public void SetId_Twice_CorrectValue_NO_Lisentner()
+        //{
+
+
+        //    //Act
+        //    _uut.setId(5);
+        //    _uut.setId(6);
+
+        //    Assert.That(_RfidReaderEventArgs.Id, Is.EqualTo(6));
+        //}
 
         [Test]
         public void NewId_SameAs_OldId_CorrectValue()
         {
-           
+            _uut.RfidReaderEvent +=
+                 (o, args) =>
+                 {
+                     _RfidReaderEventArgs = args;
+                 };
             //Act
             _uut.setId(5);
             _uut.setId(5);
 
             Assert.That(_RfidReaderEventArgs.Id, Is.EqualTo(5));
         }
-        [Test]
-        public void NewId_SameAs_OldId_CorrectValue_NO_Lisentner()
-        {
-            _uut.RfidReaderEvent -=
-               (o, args) =>
-               {
-                   _RfidReaderEventArgs = args;
-               };
-            //Act
-            _uut.setId(5);
-            _uut.setId(5);
+        //[Test]
+        //public void NewId_SameAs_OldId_CorrectValue_NO_Lisentner()
+        //{
+        //    _uut.RfidReaderEvent -=
+        //       (o, args) =>
+        //       {
+        //           _RfidReaderEventArgs = args;
+        //       };
+        //    //Act
+        //    _uut.setId(5);
+        //    _uut.setId(5);
 
-            Assert.That(_RfidReaderEventArgs.Id, Is.EqualTo(5));
-        }
+        //    Assert.That(_RfidReaderEventArgs.Id, Is.EqualTo(5));
+        //}
 
         [Test]
         public void NewId_SameAs_OldId_EventFired()
         {
+            _uut.RfidReaderEvent +=
+                (o, args) =>
+                {
+                    _RfidReaderEventArgs = args;
+                };
 
             //Act
             _uut.setId(5);
@@ -148,20 +149,20 @@ namespace Handin2_test
             Assert.That(_RfidReaderEventArgs, Is.Not.Null);
         }
 
-        [Test]
-        public void NewId_SameAs_OldId_EventFired_NO_Lisentner()
-        {
-            _uut.RfidReaderEvent -=
-               (o, args) =>
-               {
-                   _RfidReaderEventArgs = args;
-               };
-            //Act
-            _uut.setId(5);
-            _uut.setId(5);
+        //[Test]
+        //public void NewId_SameAs_OldId_EventFired_NO_Lisentner()
+        //{
+        //    _uut.RfidReaderEvent -=
+        //       (o, args) =>
+        //       {
+        //           _RfidReaderEventArgs = args;
+        //       };
+        //    //Act
+        //    _uut.setId(5);
+        //    _uut.setId(5);
 
-            Assert.That(_RfidReaderEventArgs, Is.Not.Null);
-        }
+        //    Assert.That(_RfidReaderEventArgs, Is.Not.Null);
+        //}
 
     }
 }
