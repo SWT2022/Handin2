@@ -226,20 +226,7 @@ namespace Handin2_test
 
         }
 
-        //[TestCase(3)]
-        //public void RfidReaderEvent_Unlock_Correct_Id_StateCorrect(int sameId)
-        //{
-        //    _usbCharger.Connected.Returns(true);
 
-        //    _reader.RfidReaderEvent += Raise.EventWith(new RfidReaderEventArgs { Id = sameId });
-
-        //    _Charger.Received().LockDoor();
-           
-        //    _reader.RfidReaderEvent += Raise.EventWith(new RfidReaderEventArgs { Id = sameId });
-
-        //    _door.Received().UnlockDoor();
-
-        //}
 
         [TestCase(3, 5)]
         public void RfidReaderEvent_Unlock_Wrong_Id_DisplayCorrect(int firstId, int secondId)

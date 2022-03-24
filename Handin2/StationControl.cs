@@ -114,10 +114,7 @@ namespace Handin2
             _display.DisplayReadRfid();
         }
 
-        public bool CheckId(int id, int oldId)
-        {
-            return true;
-        }
+
 
         public string GetState()
         {

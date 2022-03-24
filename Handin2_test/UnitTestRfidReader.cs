@@ -28,6 +28,18 @@ namespace Handin2_test
         }
 
         [Test]
+        public void SetID_NO_EventFired_NO_Lisentner()
+        {
+            _uut.RfidReaderEvent -=
+                (o, args) =>
+                {
+                    _RfidReaderEventArgs = args;
+                };
+
+            Assert.That(_RfidReaderEventArgs, Is.Null);
+        }
+
+        [Test]
         public void SetID_EventFired()
         {
             //Act
