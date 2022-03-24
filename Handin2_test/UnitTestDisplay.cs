@@ -38,15 +38,22 @@ namespace Handin2_test
         public void DisplayReadRfid_CorrectText()
         {
 
-            using (StringWriter sw = new StringWriter())
-            {
-                Console.SetOut(sw);
+            StringWriter sw = new StringWriter();
+            Console.SetOut(sw);
 
-                _uut.DisplayReadRfid();
+            _uut.DisplayReadRfid();
 
-                string expected = string.Format("Indlæs Rfid{0}", Environment.NewLine);
-                Assert.AreEqual(expected, sw.ToString());
-            }
+            string expected = string.Format("Indlæs Rfid{0}", Environment.NewLine);
+            Assert.AreEqual(expected, sw.ToString());
+            //using (StringWriter sw = new StringWriter())
+            //{
+            //    Console.SetOut(sw);
+
+            //    _uut.DisplayReadRfid();
+
+            //    string expected = string.Format("Indlæs Rfid{0}", Environment.NewLine);
+            //    Assert.AreEqual(expected, sw.ToString());
+            //}
         }
 
         [Test]
