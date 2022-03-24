@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -108,6 +109,20 @@ namespace Handin2_test
             display.Received().DisplayChargingError();
 
         }
+
+        [TestCase(0)]
+        [TestCase(-23)]
+        public void Test_InvalidValues_ExeptionThrown(double newCurrent)
+        {
+
+            
+
+            Assert.That(() => usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs { Current = newCurrent }),
+                Throws.TypeOf<ArgumentOutOfRangeException>());
+
+        }
+
+
 
 
 
