@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
@@ -12,7 +12,7 @@
     <PackageReference Include="coverlet.collector" Version="3.1.0" />
     <PackageReference Include="NunitXml.TestLogger" Version="3.0.117" />
   </ItemGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\Handin2\Handin2.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LadeSkab_Library\LadeSkab_Library.csproj" />
+  </ItemGroup>
 </Project>
