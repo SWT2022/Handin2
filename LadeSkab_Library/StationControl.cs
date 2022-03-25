@@ -61,13 +61,12 @@ namespace Handin2
                         }
                         _display.DisplayCharging();
                         _display.DisplayOccupied();
-                        //Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
+
                         _state = LadeskabState.Locked;
                     }
                     else
                     {
                         _display.DisplayConnectError();
-                        //Console.WriteLine("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
                     }
 
                     break;
@@ -82,20 +81,17 @@ namespace Handin2
                     if (id == _oldId)
                     {
                         _charger.StopCharge();
-                        //_door.UnlockDoor();
                         using (var writer = File.AppendText(logFile))
                         {
                             writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", id);
                         }
 
-                        //Console.WriteLine("Tag din telefon ud af skabet og luk døren");
                         _display.DisplayRemovePhone();
                         _state = LadeskabState.Available;
                     }
                     else
                     {
                         _display.DisplayReadError();
-                        //Console.WriteLine("Forkert RFID tag");
                     }
 
                     break;
@@ -103,13 +99,11 @@ namespace Handin2
         }
         public void DoorOpened()
         {
-            //Console.WriteLine("Door Opened");
             _state = LadeskabState.DoorOpen;
             _display.DisplayConnectPhone();
         }
         public void DoorClosed()
         {
-            //Console.WriteLine("Door Closed");
             _state = LadeskabState.Available;
             _display.DisplayReadRfid();
         }
@@ -119,7 +113,6 @@ namespace Handin2
         public string GetState()
         {
             return ("Current state is: " + _state);
-            //Console.WriteLine("Current state is: " + _state);
         }
 
 
