@@ -37,14 +37,6 @@ namespace Handin2_test
         [Test]
         public void DisplayReadRfid_CorrectText()
         {
-
-            //StringWriter sw = new StringWriter();
-            //Console.SetOut(sw);
-
-            //_uut.DisplayReadRfid();
-
-            //string expected = string.Format("Indlæs Rfid{0}", Environment.NewLine);
-            //Assert.AreEqual(expected, sw.ToString());
             using (StringWriter sw = new StringWriter())
             {
                 Console.SetOut(sw);
